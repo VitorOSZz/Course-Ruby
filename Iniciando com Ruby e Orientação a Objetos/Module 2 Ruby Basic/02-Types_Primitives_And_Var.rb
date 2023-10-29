@@ -1,14 +1,14 @@
-/In this class I learned check a type of element!/
-/ Integer /
+#In this class I learned check a type of element!
+# Integer 
 puts '=== Integer'
 puts "1 : #{1.class}"
-/ Float /
+# Float 
 puts '=== Float'
 puts "1.5 : #{(1.5).class}"
-/ Boolean /
+# Boolean 
 puts '=== Boolean'
 puts "1+1 == 2 #{1+1 ==2}"
-/ Var /
+# Var 
 puts '=== Var'
 puts 'n1 = 25 , n2 = 25'
 n1 = 25
