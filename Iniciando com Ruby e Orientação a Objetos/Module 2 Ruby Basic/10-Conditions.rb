@@ -13,6 +13,18 @@ else
 end
 =end
 
+=begin
+unless numberSayed < 1
+  unless numberSayed > 100
+    puts 'Your number is correct'
+  end
+end
+=end
+
+if numberSayed >= 1 and numberSayed <= 100
+  puts ' lol'
+end
+
 case
 when numberSayed > 100
   puts 'Error, your number is greater than 100'
@@ -24,8 +36,4 @@ when numberSayed == 100
   puts 'Your number is equal to 100 and greater than 1!'
 when numberSayed > 1 && numberSayed < 100
   puts "Your number is #{numberSayed} and is less than 100 and greater than 1! :D"
-end
-
-unless numberSayed < 1 && numberSayed > 100
-  puts 'Your number is correct'
 end
