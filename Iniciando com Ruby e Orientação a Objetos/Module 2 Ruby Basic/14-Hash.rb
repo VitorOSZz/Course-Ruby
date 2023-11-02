@@ -19,3 +19,4 @@ age = {Vitor: 15 , Rafael: 14}
 nacionallty = {Vitor: 'Brazillian' , Rafael: 'Brazillian'}
 
 puts "Rafael: grades: #{grades[:Rafael]} , age: #{age[:Rafael]} , Nacionallty #{nacionallty[:Rafael]}"
+puts "Vitor : grades: #{grades[:Vitor]} , age: #{age[:Vitor]} , Nacionallyty #{nacionallty[:Vitor]}"
