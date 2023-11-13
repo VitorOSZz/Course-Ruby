@@ -1,20 +1,3 @@
-system('clear')
-
-puts '-'*7
-
-puts 'Say your Name'
-name = gets.chomp
-
-puts 'What do you want to be?'
-puts "[1] Human"
-puts "[2] Sayajin"
-puts "[3] Half-Sayajin"
-puts "[4] Arcosian"
-puts "[5] Namekuseijin"
-puts "[6] Majin"
-puts "[7] Android"
-race = gets.chomp.to_i
-
 class Character
   attr_accessor :name, :race, :life, :physicalPower, :ki, :kiPower
 
@@ -74,14 +57,14 @@ class Character
     min_KiP = atributes[:kiPower] - 10
     @kiPower = rand(min_KiP..max_KiP)
   end
+
+  def showStats
+    system('clear')
+    puts "#{'-'*7}#{name} #{'-'*7}"
+    puts "Life:           #{life}"
+    puts "Physical Power: #{physicalPower}"
+    puts "Ki:             #{ki}"
+    puts "Ki Power:       #{kiPower}"
+    puts "Ki:             #{ki}"
+  end
 end
-
-player1 = Character.new(name, race )
-player1.reworkingAttributes
-
-system('clear')
-puts "#{'-'*7}#{player1.name} #{'-'*7}"
-puts "Life: #{player1.life}"
-puts "Physical Power: #{player1.physicalPower}"
-puts "Ki: #{player1.ki}"
-puts "Ki Power: #{player1.kiPower}"
