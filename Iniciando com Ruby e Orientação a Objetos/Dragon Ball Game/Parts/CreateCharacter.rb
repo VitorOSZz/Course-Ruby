@@ -67,4 +67,5 @@ class Character
     puts "Ki Power:       #{kiPower}"
     puts "Ki:             #{ki}"
   end
+
 end

@@ -18,6 +18,19 @@ player1 = Character.new(name, race)
 player1.reworkingAttributes
 player1.showStats
 
-sleep 0
+sleep 1.5
 
-File.expand_path('Parts/CreateEnemies/CreateVillan', __dir__)
+require_relative('Parts/CreateEnemies/CreateVillan')
+require_relative 'Parts/CreateEnemies/StatsEnemies'
+
+enemy_name = Enemy.randomizeVillan
+villan = InfoVillan.new
+villan.stats_Villan(enemy_name)
+villan.showStats
+
+require_relative 'Parts/BattleSystem'
+Battle = BattleSystem.new(
+  player1.life, player1.physicalPower, player1.ki, player1.kiPower,
+  villan.life, villan.physicalPower, villan.ki, villan.kiPower
+)
+Battle.startBattle
