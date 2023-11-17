@@ -26,11 +26,15 @@ class InfoVillan
     end
 
     def showStats
-      puts "#{'-'*7} #{@name} #{'-'*7}"
-      puts "Life:           #{@life}"
-      puts "Physical Power: #{@physicalPower}"
-      puts "Ki:             #{@ki}"
-      puts "Ki Power:       #{@kiPower}"
+      puts "#{'-'*7} #{@name.colorize(:red)} #{'-'*7}"
+      puts "Life:           #{@life = rand(@life-10..@life+10)}"
+      puts "Physical Power: #{@physicalPower = rand(@physicalPower-10..@physicalPower+10)}"
+      if @ki.class == Integer
+        puts "Ki:             #{@ki = rand(@ki-10..@ki+10)}"
+      elsif @ki.class == String
+        puts "Ki:             #{@ki}"
+      end
+      puts "Ki Power:       #{@kiPower = rand(@kiPower-10..@kiPower+10)}"
     end
   end
 end

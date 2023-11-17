@@ -1,9 +1,10 @@
 class Character
-  attr_accessor :name, :race, :life, :physicalPower, :ki, :kiPower
+  attr_accessor :name, :race, :life, :physicalPower, :ki, :kiPower, :specialAttack
 
-  def initialize(name, race)
+  def initialize(name, race, specialAttack)
     @name = name
     @race = race
+    @specialAttack = specialAttack
   end
 
   def reworkingAttributes
@@ -58,14 +59,31 @@ class Character
     @kiPower = rand(min_KiP..max_KiP)
   end
 
+  def reworkingSpecialAttack
+
+    case @specialAttack
+    when '1'
+      @specialAttack = 'Kamehameha'
+    when '2'
+      @specialAttack = 'Makankosappo'
+    when '3'
+      @specialAttack = 'Kienzan'
+    when '4'
+      @specialAttack = 'Galick-Hoo'
+    else
+      @specialAttack = 'Kamehameha'
+    end
+    puts "You chosed #{@specialAttack}"
+  end
+
   def showStats
     system('clear')
-    puts "#{'-'*7}#{name} #{'-'*7}"
-    puts "Life:           #{life}"
-    puts "Physical Power: #{physicalPower}"
-    puts "Ki:             #{ki}"
-    puts "Ki Power:       #{kiPower}"
-    puts "Ki:             #{ki}"
+    puts "#{'-'*7} #{name.colorize(:yellow)} #{'-'*7}"
+    puts "Life:           #{@life}"
+    puts "Physical Power: #{@physicalPower}"
+    puts "Ki:             #{@ki}"
+    puts "Ki Power:       #{@kiPower}"
+    puts "Special Attack: #{@specialAttack}"
   end
 
 end
