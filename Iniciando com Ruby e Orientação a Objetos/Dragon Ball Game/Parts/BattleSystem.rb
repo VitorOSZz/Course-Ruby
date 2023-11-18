@@ -68,6 +68,11 @@ class BattleSystem
               if @kiP1 != String
                 @kiP1 -= 10
               end
+            else
+              puts 'You dont have ki for this'
+              puts 'You punch the Villan'
+
+              attack_Damage = (@PPowerP1*0.4).to_i
             end
 
           when 'Makankosappo'
@@ -77,6 +82,11 @@ class BattleSystem
               if @kiP1 != String
                 @kiP1 -= 40
               end
+            else
+              puts 'You dont have ki for this'
+              puts 'You punch the Villan'
+
+              attack_Damage = (@PPowerP1*0.4).to_i
             end
 
           when 'Kienzan'
@@ -86,6 +96,11 @@ class BattleSystem
               if @kiP1 != String
                 @kiP1 -= 30
               end
+            else
+              puts 'You dont have ki for this'
+              puts 'You punch the Villan'
+
+              attack_Damage = (@PPowerP1*0.4).to_i
             end
 
           when 'Galick-Hoo'
@@ -95,6 +110,11 @@ class BattleSystem
               if @kiP1 != String
                 @kiP1 -= 30
               end
+            else
+              puts 'You dont have ki for this'
+              puts 'You punch the Villan'
+
+              attack_Damage = (@PPowerP1*0.4).to_i
             end
           end
         when 2 # Punch
@@ -105,7 +125,6 @@ class BattleSystem
 
         @lifeP1 -= @PPowerVillan *0.1
         @lifeVillan -= attack_Damage
-      sleep 2
 
       # Win and Lose System
       if @lifeP1 <= 0 and @lifeVillan <= 0
@@ -120,16 +139,10 @@ class BattleSystem
       elsif @lifeVillan <= 0
         @fighting = false
         puts "You win from #{@VillanName}".colorize(:green)
+
       end
+      sleep(2)
     end
 
   end
 end
-
-# 13/11
-# I want do Battle System with Ki Attacks,
-# all rounds Ki recove and have a way for upgrade level of your warrior
-# for battle with bosses
-
-# 14/11
-# I want to do a attack recover life for player and add special attacks

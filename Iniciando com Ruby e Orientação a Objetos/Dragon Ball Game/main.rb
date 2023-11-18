@@ -39,7 +39,7 @@ require_relative 'Parts/BattleSystem'
 
 stop = false
 while stop == false
-  puts ''
+  system('clear')
   puts 'Do you want upgrade your level or Battle?'
   puts '[1] Level System'
   puts '[2] Battle'
@@ -109,12 +109,12 @@ while stop == false
 
     sleep(2)
 
-    Battle = BattleSystem.new(
+    battle = BattleSystem.new(
     player1.life, player1.physicalPower, player1.ki, player1.kiPower,
     villan.life, villan.physicalPower, villan.ki, villan.kiPower,
     player1.specialAttack, name, enemy_name
     )
-    Battle.startBattle
+    battle.startBattle
   elsif battleOrLevel == 3
     stop = true
   end
