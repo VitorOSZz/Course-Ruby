@@ -1,0 +1,20 @@
+User: Vitor
+>20 years old: false
+>160cm: true
+-------
+
+User: Vitor
+>20 years old: true
+>160cm: false
+-------
+
+User: Lucas
+>20 years old: true
+>160cm: true
+-------
+
+User: Sarah
+>20 years old: false
+>160cm: false
+-------
+
