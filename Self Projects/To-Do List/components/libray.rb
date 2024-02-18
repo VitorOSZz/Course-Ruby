@@ -10,30 +10,23 @@ class ToDolist
         id +=1
         if File.open(path_file,'r+').read == ""
           stop = true
-          tasks.write('-'*12 + "\n")
+          tasks.write('-'*12)
         else
           File.foreach(path_file, 'r+') do |line|
             if line.include?("ID      : #{id}") == false
               stop = true
-              tasks.write("\n" + '-'*12 + "\n")
+              tasks.write("\n" + '-'*12)
             end
           end
         end
       end
 
-      #tasks.write("\n" + '-'*12 + "\n")
-      tasks.write(" ID      : #{id} \n")
-      tasks.write(" Title   : #{title}    \n")
-      tasks.write(" Due Date: #{due_date} \n")
-      tasks.write(" Priority: #{priority}   ")
+      tasks.write(" \n ID      : #{id}")
+      tasks.write(" \n Title   : #{title}")
+      tasks.write(" \n Due Date: #{due_date}\n")
+      tasks.write(" Priority: #{priority}")
       tasks.close
     end
-
-  def delete_tasks
-    tasks = File.open('components/tasks.txt','w')
-    tasks.write('')
-    tasks.close
-  end
 
   def check
     tasks = File.open('components/tasks.txt','r')
@@ -52,7 +45,7 @@ class ToDolist
     end}
   end
 
-  def take_on_list(number_you_want,path_file)
+  def take_on_list(number_you_want, path_file)
     @number_you_want = number_you_want
     x = 0
     lines = []
@@ -60,14 +53,12 @@ class ToDolist
     File.open(path_file, 'r') do |file|
       file.each_line do |line|
         x += 1
-        if x != @number_you_want
-          lines << line
-        end
+        lines << line unless x == @number_you_want
       end
     end
 
     File.open(path_file, 'w') do |file|
-      file.puts lines
+      file.write lines.join("")
     end
   end
 
@@ -95,7 +86,6 @@ class ToDolist
         tasks.write("#{txt}")
         tasks.close
       end
-      puts File.open(path_file, 'r').read
     end
   end
 end

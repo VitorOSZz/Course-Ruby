@@ -1,5 +1,15 @@
-------------
+------------ 
  ID      : 1 
- Title   : Do Homework    
- Due Date: 20/11/2024 
- Priority: 2   
+ Title   : Do a Homework 
+ Due Date: 20/02/2024
+ Priority: 3
+------------ 
+ ID      : 2 
+ Title   : Finish a section of course ruby 
+ Due Date: 01/03/2024
+ Priority: 2
+------------ 
+ ID      : 3 
+ Title   : Train Jiu Jitsu 
+ Due Date: 21/02/2024
+ Priority: 3
