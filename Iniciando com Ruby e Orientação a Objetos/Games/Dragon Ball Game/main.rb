@@ -1,40 +1,66 @@
-# Gems
 require 'colorize'
 
 system('clear')
 puts '-'*7
-puts 'Say your Name'
-name = gets.chomp
 
-puts 'What do you want to be?'
-puts "[1] Human"
-puts "[2] Sayajin"
-puts "[3] Half-Sayajin"
-puts "[4] Arcosian"
-puts "[5] Namekuseijin"
-puts "[6] Majin"
-puts "[7] Android"
-race = gets.chomp.to_i
+puts '[1] New save'
+puts '[2] Load Save'
 
-sleep(1)
-system('clear')
-puts "What Special Attack do you want?"
+newORloadsave = gets.chomp.to_i
+system ('clear')
+puts 'What save you want use?'
+puts '[1]: '
+puts File.open("Saves/save-01.txt",).read
+puts ('-'*25).colorize(:red)
+puts '[2]: '
+puts File.open("Saves/save-02.txt",).read
+puts ('-'*25).colorize(:red)
+puts '[3]: '
+puts File.open("Saves/save-03.txt",).read
+puts ('-'*25).colorize(:red)
+puts '[4]: '
+puts File.open("Saves/save-04.txt",).read
+puts ('-'*25).colorize(:red)
+whatsave = gets.chomp.to_i
+if (whatsave > 4) || (whatsave < 1)
+  puts 'Error: Say a exit save'
+  exit
+end
+
+require_relative 'Parts\CreateCharacter.rb'
+if newORloadsave == 1
+  puts 'Say your Name'
+  name = gets.chomp
+
+  puts 'What do you want to be?'
+  puts "[1] Human"
+  puts "[2] Sayajin"
+  puts "[3] Half-Sayajin"
+  puts "[4] Arcosian"
+  puts "[5] Namekuseijin"
+  puts "[6] Majin"
+  puts "[7] Android"
+  race = gets.chomp.to_i
+
+  sleep(1)
+  system('clear')
+  puts "What Special Attack do you want?"
   puts "[1] Kamehameha"
   puts "[2] Makankosappo"
   puts "[3] Kienzan"
   puts "[4] Galick-Hoo"
-specialAttack = gets.chomp
-
-
-require_relative 'Parts\CreateCharacter.rb'
-player1 = Character.new(name, race, specialAttack)
-player1.reworkingSpecialAttack
-player1.reworkingAttributes
-sleep(0.5)
-player1.showStats
-
+  specialAttack = gets.chomp
+  
+  player1 = Character.new
+  player1.reworkingAttributes(name, race)
+  player1.reworkingSpecialAttack(specialAttack)
+  sleep(0.5)
+elsif 2
+  player = Character.new
+  player.loltest
+end
+=begin
 sleep 1.5
-
 require_relative 'Parts/BattleSystem'
 
 stop = false
@@ -49,30 +75,31 @@ while stop == false
 
   if battleOrLevel == 1
     system('clear')
-    sleep(1)
-    puts "[̲̅_̲̅_̲̅_̲̅_̲̅_̲̅] 1O%"
-    sleep(1)
-    puts "[̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅] 2O%"
-    sleep(1)
-    puts "[̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅] 3O%"
-    sleep(1)
-    puts "[̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅] 4O%"
-    sleep(1)
-    puts "[̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅] 5O%"
-    sleep(1)
-    puts "[̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅] 6O%"
-    sleep(1)
-    puts "[̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅] 7O%"
-    sleep(1)
-    puts "[̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅] 8O%"
-    sleep(1)
-    puts "[̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅] 9O%"
-    sleep(1)
-    puts "[̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅_̲̅] 100%"
-    sleep(1)
+    sleep(0.5)
 
+    puts "█▒▒▒▒▒▒▒▒▒ 10%"
+    sleep(0.5)
+    puts "██▒▒▒▒▒▒▒▒ 20%"
+    sleep(0.5)
+    puts "███▒▒▒▒▒▒▒ 30%"
+    sleep(0.5)
+    puts "████▒▒▒▒▒▒ 40%"
+    sleep(0.5)
+    puts "█████▒▒▒▒▒ 50%"
+    sleep(0.5)
+    puts "██████▒▒▒▒ 60%"
+    sleep(0.5)
+    puts "███████▒▒▒ 70%"
+    sleep(0.5)
+    puts "████████▒▒ 80%"
+    sleep(0.5)
+    puts "█████████▒ 90%"
+    sleep(0.5)
+    puts "██████████ 100%"
+    sleep(1)
+    require 'colorize'
     puts 'Say a Attribute for upgrade 30 Points!'
-    puts "#{'-'*7} #{player1.name.colorize(:yellow)} #{'-'*7}"
+    puts "#{'-'*7} #{(player1.name).colorize(:yellow)} #{'-'*7}"
     puts "[1] Life:           #{player1.life}"
     puts "[2] Physical Power: #{player1.physicalPower}"
     puts "[3] Ki:             #{player1.ki}"
@@ -119,3 +146,4 @@ while stop == false
     stop = true
   end
 end
+=end

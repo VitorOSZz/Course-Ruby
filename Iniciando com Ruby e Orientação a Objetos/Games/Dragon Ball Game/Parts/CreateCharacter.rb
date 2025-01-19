@@ -1,13 +1,9 @@
 class Character
   attr_accessor :name, :race, :life, :physicalPower, :ki, :kiPower, :specialAttack
 
-  def initialize(name, race, specialAttack)
+  def reworkingAttributes(name, race)
     @name = name
     @race = race
-    @specialAttack = specialAttack
-  end
-
-  def reworkingAttributes
     case @race
     when 1
       atributes = {life: 100, physicalPower: 100, ki: 100, kiPower: 100}
@@ -28,7 +24,7 @@ class Character
       atributes = {life: 300, physicalPower: 130, ki: 130, kiPower: 130}
       @race_name = 'Majin'
     when 7
-      atributes = {life: 200, physicalPower: 130, ki: 'Infinity', kiPower: 100}
+      atributes = {life: 200, physicalPower: 130, ki: Float::INFINITY, kiPower: 100}
       @race_name = 'Android'
     else
       atributes = {life:  100, physicalPower: 100, ki: 100, kiPower: 100}
@@ -45,7 +41,7 @@ class Character
     @physicalPower = rand(min_ph..max_ph)
 
     # Ki
-    if atributes[:ki] == 'Infinity'
+    if atributes[:ki] == Float::INFINITY
       @ki = atributes[:ki]
     elsif atributes[:ki].class == Integer
       max_ki = atributes[:ki] + 10
@@ -59,7 +55,8 @@ class Character
     @kiPower = rand(min_KiP..max_KiP)
   end
 
-  def reworkingSpecialAttack
+  def reworkingSpecialAttack(specialAttack)
+    @specialAttack = specialAttack
 
     case @specialAttack
     when '1'
@@ -76,9 +73,19 @@ class Character
     puts "You chosed #{@specialAttack}"
   end
 
+  def loadSave
+    #file = IO.readlines("../Saves/save-0#{save_slot}")
+    #file = File.open('lol.txt').read
+    #puts File.open("lol.txt")  #=> "This is line one\n"
+
+
+    #atributes = {life: 100, physicalPower: 100, ki: 100, kiPower: 100}
+    #@race_name = race
+  end
+
   def showStats
     system('clear')
-    puts "#{'-'*7} #{name.colorize(:yellow)} #{'-'*7}"
+    puts "#{'-'*7} #{@name.colorize(:yellow)} #{'-'*7}"
     puts "Life:           #{@life}"
     puts "Physical Power: #{@physicalPower}"
     puts "Ki:             #{@ki}"
@@ -86,4 +93,8 @@ class Character
     puts "Special Attack: #{@specialAttack}"
   end
 
+  def loltest
+    puts File.open("#{Dir.pwd}/Parts/lol.txt").read
+    puts "l: #{File.exist?("#{__FILE__}")}"#File.exist?('')
+  end
 end

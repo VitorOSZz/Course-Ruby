@@ -5,16 +5,16 @@ class BattleSystem
     lifeVillan, physicalPowerVillan, kiVillan, kiPowerVillan,
     specialAttack, nameP1, villanName)
     # Stats Player, P1 = Player
-    @lifeP1 = lifeP1.to_i
-    @PPowerP1 = physicalPowerP1.to_i
+    @lifeP1 = lifeP1
+    @PPowerP1 = physicalPowerP1
     #@kiP1 = kiP1.to_i
-    @kiP1 = kiP1.to_i
-    @kiPowerP1 = kiPowerP1.to_i
+    @kiP1 = kiP1
+    @kiPowerP1 = kiPowerP1
     # Stats Villan
-    @lifeVillan = lifeVillan.to_i
-    @PPowerVillan = physicalPowerVillan.to_i
-    @kiVillan = kiVillan.to_i
-    @kiPowerVillan = kiPowerVillan.to_i
+    @lifeVillan = lifeVillan
+    @PPowerVillan = physicalPowerVillan
+    @kiVillan = kiVillan
+    @kiPowerVillan = kiPowerVillan
     @specialAttack = specialAttack
     @nameP1 = nameP1
     @VillanName = villanName
@@ -37,8 +37,12 @@ class BattleSystem
 
     until (@lifeP1 <= 0 || @lifeVillan <= 0) or (@lifeP1 <= 0 || @lifeVillan <= 0)
       system('clear')
-      @kiP1 += max_kiP1*0.1
+
+      if @kiP1 != Float::INFINITY
+        @kiP1 += max_kiP1*0.1
+      end
       attack_Damage = 0
+      punch = false
 
       puts "Round: #{round += 1}"
       # Player
@@ -50,78 +54,59 @@ class BattleSystem
       puts "#{@VillanName} Life: #{@lifeVillan}".colorize(:red)
       puts "#{@VillanName} Ki:   #{@kiVillan}".colorize(:red)
       puts 'What do you want:'
-        puts '[1] Special Attack'
-        puts '[2] Punch'
+      puts '[1] Special Attack'
+      puts '[2] Punch'
 
         attack = gets.chomp.to_i
-
         case attack
-
         when 1 # Special Attack
-
           case @specialAttack
-
           when 'Kamehameha'
-            if @kiP1 >= 10 or @kiP1 == String
+            if @kiP1 >= 10
               puts "You used #{@specialAttack}"
               attack_Damage = (@PPowerP1*0.5).to_i
-              if @kiP1 != String
-                @kiP1 -= 10
-              end
+              @kiP1 -= 10
             else
-              puts 'You dont have ki for this'
-              puts 'You punch the Villan'
-
-              attack_Damage = (@PPowerP1*0.4).to_i
+              punch = true
             end
-
           when 'Makankosappo'
-            if @kiP1 >= 40 or @kiP1== String
+            if @kiP1 >= 40
               puts "You used #{@specialAttack}"
               attack_Damage = (@kiPowerP1*1).to_i
-              if @kiP1 != String
-                @kiP1 -= 40
-              end
+              @kiP1 -= 40
             else
-              puts 'You dont have ki for this'
-              puts 'You punch the Villan'
-
-              attack_Damage = (@PPowerP1*0.4).to_i
+              punch = true
             end
 
           when 'Kienzan'
-            if @kiP1 >= 30 or @kiP1 == String
+            if @kiP1 >= 30
               puts "You used #{@specialAttack}"
               attack_Damage = (@kiPowerP1*0.8).to_i
-              if @kiP1 != String
-                @kiP1 -= 30
-              end
+              @kiP1 -= 30
             else
-              puts 'You dont have ki for this'
-              puts 'You punch the Villan'
-
-              attack_Damage = (@PPowerP1*0.4).to_i
+              punch = true
             end
 
           when 'Galick-Hoo'
-            if @kiP1 >= 30 or @kiP1 == String
+            if @kiP1 >= 30
               puts "You used #{@specialAttack}"
               attack_Damage = (@kiPowerP1*0.8).to_i
-              if @kiP1 != String
-                @kiP1 -= 30
-              end
+              @kiP1 -= 30
             else
-              puts 'You dont have ki for this'
-              puts 'You punch the Villan'
-
-              attack_Damage = (@PPowerP1*0.4).to_i
+              punch = true
             end
           end
-        when 2 # Punch
-          attack_Damage = (@PPowerP1* 0.4).to_i
         else
+          puts 'You punched!'
           attack_Damage = (@PPowerP1*0.4).to_i
         end
+
+        if punch
+          puts 'You dont have ki for this'
+          puts 'You punched!'
+          attack_Damage = (@PPowerP1*0.4).to_i 
+        end
+
 
         @lifeP1 -= @PPowerVillan *0.1
         @lifeVillan -= attack_Damage

@@ -1,0 +1,6 @@
+Vitor
+Life:           test
+Physical Power: test
+Ki:             test
+Ki Power:       test
+Race:           test
