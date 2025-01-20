@@ -1,4 +1,5 @@
 require 'colorize'
+require 'readline'
 
 system('clear')
 puts '-'*7
@@ -9,18 +10,8 @@ puts '[2] Load Save'
 newORloadsave = gets.chomp.to_i
 system ('clear')
 puts 'What save you want use?'
-puts '[1]: '
-puts File.open("Saves/save-01.txt",).read
-puts ('-'*25).colorize(:red)
-puts '[2]: '
-puts File.open("Saves/save-02.txt",).read
-puts ('-'*25).colorize(:red)
-puts '[3]: '
-puts File.open("Saves/save-03.txt",).read
-puts ('-'*25).colorize(:red)
-puts '[4]: '
-puts File.open("Saves/save-04.txt",).read
-puts ('-'*25).colorize(:red)
+require_relative('Parts/Functions.rb')
+show_saves
 save_slot = gets.chomp.to_i
 if (save_slot > 4) || (save_slot < 1)
   puts 'Error: Say a exit save'
@@ -54,6 +45,7 @@ if newORloadsave == 1
   player1 = Character.new
   player1.reworkingAttributes(name, race)
   player1.reworkingSpecialAttack(specialAttack)
+  player1.save(save_slot, player1.life, player1.physicalPower, player1.ki, player1.kiPower)
   sleep(0.5)
 elsif 2
   player1 = Character.new

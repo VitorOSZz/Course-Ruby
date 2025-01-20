@@ -74,14 +74,35 @@ class Character
   end
 
   def loadSave(save_slot)
-    require 'readline'
-    @name = IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[0]
-    @life = (IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[1]).to_i
-    @physicalPower = (IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[2]).to_i
-    @ki = (IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[3]).to_i
-    @kiPower = (IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[4]).to_i
-    @race = (IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[5]).to_i
-    @specialAttack = (IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[6])
+    path = Dir.pwd+"/Saves/save-0#{save_slot}.txt"
+    @name = IO.readlines(path)[0]
+    @life = (IO.readlines(path)[1]).to_i
+    @physicalPower = (IO.readlines(path)[2]).to_i
+    if IO.readlines(path)[3].to_i == 0
+      @ki = Float::INFINITY
+    else
+      @ki = (IO.readlines(path)[3]).to_i
+    end
+      
+    @kiPower = (IO.readlines(path)[4]).to_i
+    @race = (IO.readlines(path)[5]).to_i
+    @specialAttack = (IO.readlines(path)[6]).to_i
+    case @race
+    when 1
+      @race_name = 'Human'
+    when 2
+      @race_name = 'Sayajin'
+    when 3
+      @race_name = 'Half-Sayajin'
+    when 4
+      @race_name = 'Arcosian'
+    when 5
+      @race_name = 'Namekuseijin'
+    when 6
+      @race_name = 'Majin'
+    when 7
+      @race_name = 'Android'
+    end
   end
 
   def save(save_slot, life, physicalPower, ki, kiPower)
