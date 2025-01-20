@@ -49,6 +49,7 @@ class BattleSystem
       puts ''
       puts "#{@nameP1} Life: #{@lifeP1}".colorize(:yellow)
       puts "#{@nameP1} Ki:   #{@kiP1}".colorize(:yellow)
+      puts "Special Attack: #{@specialAttack}".colorize(:yellow)
       # Villan
       puts ''
       puts "#{@VillanName} Life: #{@lifeVillan}".colorize(:red)

@@ -21,8 +21,8 @@ puts ('-'*25).colorize(:red)
 puts '[4]: '
 puts File.open("Saves/save-04.txt",).read
 puts ('-'*25).colorize(:red)
-whatsave = gets.chomp.to_i
-if (whatsave > 4) || (whatsave < 1)
+save_slot = gets.chomp.to_i
+if (save_slot > 4) || (save_slot < 1)
   puts 'Error: Say a exit save'
   exit
 end
@@ -56,10 +56,10 @@ if newORloadsave == 1
   player1.reworkingSpecialAttack(specialAttack)
   sleep(0.5)
 elsif 2
-  player = Character.new
-  player.loltest
+  player1 = Character.new
+  player1.loadSave(save_slot)
 end
-=begin
+
 sleep 1.5
 require_relative 'Parts/BattleSystem'
 
@@ -124,7 +124,7 @@ while stop == false
     puts "[2] Physical Power: #{player1.physicalPower}"
     puts "[3] Ki:             #{player1.ki}"
     puts "[4] Ki Power:       #{player1.kiPower}"
-
+    player1.save(save_slot, player1.life, player1.physicalPower, player1.ki, player1.kiPower)
   elsif battleOrLevel == 2
     require_relative('Parts/CreateEnemies/CreateVillan')
     require_relative 'Parts/CreateEnemies/StatsEnemies'
@@ -146,4 +146,3 @@ while stop == false
     stop = true
   end
 end
-=end

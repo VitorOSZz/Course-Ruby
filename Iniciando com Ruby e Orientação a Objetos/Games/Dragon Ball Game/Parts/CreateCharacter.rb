@@ -73,14 +73,27 @@ class Character
     puts "You chosed #{@specialAttack}"
   end
 
-  def loadSave
-    #file = IO.readlines("../Saves/save-0#{save_slot}")
-    #file = File.open('lol.txt').read
-    #puts File.open("lol.txt")  #=> "This is line one\n"
+  def loadSave(save_slot)
+    require 'readline'
+    @name = IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[0]
+    @life = (IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[1]).to_i
+    @physicalPower = (IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[2]).to_i
+    @ki = (IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[3]).to_i
+    @kiPower = (IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[4]).to_i
+    @race = (IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[5]).to_i
+    @specialAttack = (IO.readlines(Dir.pwd+"/Saves/save-0#{save_slot}.txt")[6])
+  end
 
-
-    #atributes = {life: 100, physicalPower: 100, ki: 100, kiPower: 100}
-    #@race_name = race
+  def save(save_slot, life, physicalPower, ki, kiPower)
+    data = File.open(Dir.pwd+"/Saves/save-0#{save_slot}.txt", "w+")
+    data.puts @name
+    data.puts(@life)
+    data.puts(@physicalPower = physicalPower)
+    data.puts(@ki = ki)
+    data.puts(@kiPower = kiPower)
+    data.puts(@race)
+    data.puts(@specialAttack)
+    data.close
   end
 
   def showStats
@@ -92,9 +105,5 @@ class Character
     puts "Ki Power:       #{@kiPower}"
     puts "Special Attack: #{@specialAttack}"
   end
-
-  def loltest
-    puts File.open("#{Dir.pwd}/Parts/lol.txt").read
-    puts "l: #{File.exist?("#{__FILE__}")}"#File.exist?('')
-  end
 end
+
