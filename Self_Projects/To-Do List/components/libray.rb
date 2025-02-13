@@ -88,4 +88,53 @@ class ToDolist
       end
     end
   end
+
+  def edit_a_item(id_to_edit,path_file)
+    system 'clear'
+    x = 0
+    line_of_ID = 0
+    IO.foreach(path_file) { |line|
+      x +=1
+      if line.include?("ID      : #{id_to_edit}")
+        line_of_ID = x
+      end
+  }
+    5.times do |x|
+
+      see_on_list((line_of_ID-2)+(x+1))
+    end
+    
+
+    choose = 0
+    puts '-'*12
+    while choose <= 0 or choose > 3
+      puts "what you want to edit?\n[1] Title\n[2] Due Date\n[3] Priority"
+      choose = gets.to_i 
+      if choose <= 0 or choose > 3
+        puts "invalid option!"
+      end
+    end
+
+    puts 'what you want to insert?'
+    new_txt = gets
+
+    txt = IO.readlines(path_file)
+
+    if line_of_ID+choose == txt.length # if is the last line => put chomp to dont write \n
+      new_txt = new_txt.chomp
+    end
+    case choose 
+    when 1
+      txt[line_of_ID+choose-1] = " Title   : #{new_txt}"
+    when 2
+      txt[line_of_ID+choose-1] = " Due Date: #{new_txt}"
+    when 3
+      txt[line_of_ID+choose-1] = " Priority: #{new_txt}"
+    end
+    tasks = File.open(path_file, 'w+')
+    txt.each { |line|
+      tasks.write(line)
+    }
+    tasks.close
+  end
 end
