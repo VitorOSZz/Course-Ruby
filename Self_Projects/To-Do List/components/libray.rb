@@ -1,6 +1,6 @@
-class ToDolist
+module To_Do_List
 
-    def create_a_task(title, due_date, priority,path_file)
+    def self.create_a_task(title, due_date, priority,path_file)
 
       tasks = File.open(path_file,'a+')
       id = 0
@@ -28,52 +28,37 @@ class ToDolist
       tasks.close
     end
 
-  def check
-    tasks = File.open('components/tasks.txt','r')
-    puts tasks.read
-    tasks.close
+  def self.check(path_file)
+    return File.read(path_file)
   end
 
-  def see_on_list(number_you_want)
-    @Number_you_want = number_you_want
+  def self.see_on_list(line_number)
     x = 0
     File.foreach('components/tasks.txt') {|line|
     x += 1
-    if x == @Number_you_want
+    if x == line_number
       this_id = line
-      puts line
+      return line
     end}
   end
 
-  def take_on_list(number_you_want, path_file)
-    @number_you_want = number_you_want
-    x = 0
-    lines = []
-
-    File.open(path_file, 'r') do |file|
-      file.each_line do |line|
-        x += 1
-        lines << line unless x == @number_you_want
-      end
+  def self.delete_a_item(id_to_delete,path_file)
+    start_line = (id_to_delete*4)+(id_to_delete-5)
+    
+    txt = IO.readlines(path_file)
+    for x in 1..5 do 
+      txt.delete_at(start_line)
     end
-
-    File.open(path_file, 'w') do |file|
-      file.write lines.join("")
-    end
-  end
-
-  def take_multiples_lines(start_line,path_file)
-    x=0
-    while x < 5
-      take_on_list(start_line,path_file)
+    File.open(path_file, 'w+') do |tasks|
+      x = 0
+      txt.each { |line|
       x += 1
+      if txt.length == x
+        line = line.chomp
+      end
+      tasks.write(line)
+    }
     end
-  end
-
-  def delete_a_item(id_to_delete,path_file)
-    start_line = (id_to_delete*4)+(id_to_delete-4)
-    take_multiples_lines(start_line,path_file)
-
     # Re Organize IDS
     system('clear')
     File.foreach(path_file, 'r+') do |line|
@@ -89,34 +74,8 @@ class ToDolist
     end
   end
 
-  def edit_a_item(id_to_edit,path_file)
-    system 'clear'
-    x = 0
-    line_of_ID = 0
-    IO.foreach(path_file) { |line|
-      x +=1
-      if line.include?("ID      : #{id_to_edit}")
-        line_of_ID = x
-      end
-  }
-    5.times do |x|
-
-      see_on_list((line_of_ID-2)+(x+1))
-    end
-    
-
-    choose = 0
-    puts '-'*12
-    while choose <= 0 or choose > 3
-      puts "what you want to edit?\n[1] Title\n[2] Due Date\n[3] Priority"
-      choose = gets.to_i 
-      if choose <= 0 or choose > 3
-        puts "invalid option!"
-      end
-    end
-
-    puts 'what you want to insert?'
-    new_txt = gets
+  def self.edit_a_item(path_file, line_of_ID, choose, new_txt)
+    #system 'clear'
 
     txt = IO.readlines(path_file)
 
@@ -137,4 +96,8 @@ class ToDolist
     }
     tasks.close
   end
+end
+
+def separte_line
+  puts ('-'*12).colorize(:yellow)
 end
