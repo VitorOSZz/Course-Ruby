@@ -39,7 +39,7 @@ class BattleSystem
       system('clear')
 
       if @kiP1 != Float::INFINITY
-        @kiP1 += max_kiP1*0.1
+        @kiP1 += max_kiP1*0.005
       end
       attack_Damage = 0
       punch = false
@@ -65,7 +65,7 @@ class BattleSystem
           when 'Kamehameha'
             if @kiP1 >= 10
               puts "You used #{@specialAttack}"
-              attack_Damage = (@PPowerP1*0.5).to_i
+              attack_Damage = (@kiPowerP1*0.5).to_i
               @kiP1 -= 10
             else
               punch = true
@@ -125,7 +125,6 @@ class BattleSystem
       elsif @lifeVillan <= 0
         @fighting = false
         puts "You win from #{@VillanName}".colorize(:green)
-
       end
       sleep(2)
     end

@@ -1,0 +1,17 @@
+{
+    "name": "Raditz",
+    "forma": "Base",
+    "life": 100,
+    "physicalPower": 130,
+    "ki": 100,
+    "kiPower": 125,
+    "race": 2,
+    "ataques": [
+      { "nome": "Regeneration"},
+      { "nome": "Chidori", "dano": 0.70}
+    ],
+    "frases": [
+      "Você é só um macaco insolente!",
+      "Eu vim pra trazer o Goku"
+    ]
+}

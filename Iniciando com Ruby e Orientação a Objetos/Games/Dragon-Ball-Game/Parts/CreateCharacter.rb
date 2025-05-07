@@ -56,9 +56,8 @@ class Character
   end
 
   def reworkingSpecialAttack(specialAttack)
-    @specialAttack = specialAttack
 
-    case @specialAttack
+    case specialAttack
     when '1'
       @specialAttack = 'Kamehameha'
     when '2'
@@ -86,7 +85,7 @@ class Character
       
     @kiPower = (IO.readlines(path)[4]).to_i
     @race = (IO.readlines(path)[5]).to_i
-    @specialAttack = (IO.readlines(path)[6]).to_i
+    @specialAttack = (IO.readlines(path)[6])
     case @race
     when 1
       @race_name = 'Human'
@@ -113,7 +112,7 @@ class Character
     data.puts(@ki = ki)
     data.puts(@kiPower = kiPower)
     data.puts(@race)
-    data.puts(@specialAttack)
+    data.print(@specialAttack)
     data.close
   end
 

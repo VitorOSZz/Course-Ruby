@@ -2,7 +2,7 @@ system('clear')
 
 module Enemy
 
-  LIST = ['Vegeta', 'Freeza', 'Android 17', 'Android 18', 'Cell', 'Majin Buu', 'Bills', 'Broly', 'Piccolo Daimaoh']
+  LIST = ['Vegeta', 'Freeza', 'Android 17', 'Android 18', 'Cell', 'Majin Buu', 'Bills', 'Broly', 'Piccolo Daimaoh', 'Kuririn']
   HOW_MANY_VILLAINS = LIST.length - 1
 
   def self.randomizeVillan

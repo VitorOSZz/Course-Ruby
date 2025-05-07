@@ -40,7 +40,7 @@ if newORloadsave == 1
   puts "[2] Makankosappo"
   puts "[3] Kienzan"
   puts "[4] Galick-Hoo"
-  specialAttack = gets.chomp
+  specialAttack = gets.chomp.to_i
   
   player1 = Character.new
   player1.reworkingAttributes(name, race)
@@ -60,8 +60,9 @@ while stop == false
   system('clear')
   puts 'Do you want upgrade your level or Battle?'
   puts '[1] Level System'
-  puts '[2] Battle'
-  puts '[3] Stop'
+  puts '[2] Random Battle'
+  puts '[3] Story Mode'
+  puts '[4] Stop'
 
   battleOrLevel = gets.chomp.to_i
 
@@ -91,7 +92,7 @@ while stop == false
     sleep(1)
     require 'colorize'
     puts 'Say a Attribute for upgrade 30 Points!'
-    puts "#{'-'*7} #{(player1.name).colorize(:yellow)} #{'-'*7}"
+    puts "#{'-'*7} #{(player1.name).chomp.colorize(:yellow)} #{'-'*7}"
     puts "[1] Life:           #{player1.life}"
     puts "[2] Physical Power: #{player1.physicalPower}"
     puts "[3] Ki:             #{player1.ki}"
@@ -135,6 +136,31 @@ while stop == false
     )
     battle.startBattle
   elsif battleOrLevel == 3
+    # 1- Mostrar as fases
+    # 1- puts todos arquivos da Saga Sayan
+    puts "=Saga Sayan"
+    showPhases("Sayan")
+    puts "What phase do you want to play?"
+    phase = gets.chomp.to_i
+
+    require_relative 'Parts/CreateEnemies/StatsEnemies'
+
+    path = "story-mode/DbZ/Saga Sayan/1.json"
+    villan = InfoVillan.new
+    villan.stats_story_mode("story-mode/DbZ/Saga Sayan/#{phase}.json")
+    villan.showStats_story_mode()
+
+    sleep(2)
+
+    battle = BattleSystem.new(
+    player1.life, player1.physicalPower, player1.ki, player1.kiPower,
+    villan.life, villan.physicalPower, villan.ki, villan.kiPower,
+    player1.specialAttack, name, enemy_name
+    )
+    battle.startBattle
+    # 2- Poder escolher o bixao
+    # #- Lutar com bixao
+  elsif battleOrLevel == 4
     stop = true
   end
 end

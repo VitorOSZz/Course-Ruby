@@ -23,6 +23,8 @@ class InfoVillan
       attributes = [ @life = 300, @physicalPower = 350, @ki = 250, @kiPower = 250 ]
     when 'Piccolo Daimaoh'
       attributes = [ @life = 120, @physicalPower = 100, @ki = 130, @kiPower = 150 ]
+    when 'Kuririn'
+      attributes = [ @life = 100, @physicalPower = 80, @ki = 130, @kiPower = 100 ]
     end
 
     def showStats
@@ -36,5 +38,26 @@ class InfoVillan
       end
       puts "Ki Power:       #{@kiPower = rand(@kiPower-10..@kiPower+10)}"
     end
+  end
+
+  def stats_story_mode(data_path)
+    require 'json'
+    data = JSON.parse(File.read(data_path))
+
+    @name = data["name"]
+
+    attributes = [ @life = data["life"], @physicalPower = data["physicalPower"], @ki = data["ki"], @kiPower = data["kiPower"]]
+  end
+
+  def showStats_story_mode()
+    puts "#{'-'*7} #{@name} #{'-'*7}"
+    puts "Life:           #{@life = rand((@life-10)..@life+10)}"
+    puts "Physical Power: #{@physicalPower = rand(@physicalPower-10..@physicalPower+10)}"
+    if @ki.class == Integer
+      puts "Ki:             #{@ki = rand(@ki-10..@ki+10)}"
+    elsif villan.ki.class == String
+      puts "Ki:             #{@ki}"
+    end
+    puts "Ki Power:       #{@kiPower = rand(@kiPower-10.. @kiPower+10)}"
   end
 end

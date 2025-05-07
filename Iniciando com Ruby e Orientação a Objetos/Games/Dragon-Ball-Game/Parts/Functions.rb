@@ -44,3 +44,13 @@ def show_saves
   show_N_save(3)
   show_N_save(4)
 end
+
+def showPhases(saga)
+
+  case saga
+  when 'Sayan'
+    puts Dir["story-mode/DbZ/Saga Sayan/*.json"]
+  else
+  end
+
+end
